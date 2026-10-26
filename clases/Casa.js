@@ -36,6 +36,11 @@ export class Casa {
         miembro.setCasa = this; // Asignar casa al personaje
     }
 
+    anadirMiembro(miembro) {
+        this.miembros.push(miembro); // Añadir miembro a la casa (array)
+        miembro.setCasa = this; // Asignar casa al personaje
+    }
+
     listaMiembros() {
         console.log(`Miembros de la Casa ${this.nombre}:`);
         this.miembros.forEach(m => console.log(`- ${m.nombre}`));

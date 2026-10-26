@@ -20,20 +20,20 @@ let arya = new Personaje("Arya Stark", 18);
 let jaime = new Personaje("Jaime Lannister", 18);
 
 // Añadir casa al reino
-reinoPoniente.setCasa = casaStark;
-reinoPoniente.setCasa = casaLannister;
+reinoPoniente.anadirCasa(casaStark);
+reinoPoniente.anadirCasa(casaLannister);
 
 // Asignar arma a los personajes
-jon.setArma = garra;
-arya.setArma = aguja;
+jon.asignarArma(garra);
+arya.asignarArma(aguja);
 
 // Añadir miembros a las casas
-casaStark.setMiembro = jon;
-casaStark.setMiembro = arya;
-casaLannister.setMiembro = jaime;
+casaStark.anadirMiembro(jon);
+casaStark.anadirMiembro(arya);
+casaLannister.anadirMiembro(jaime);
 
 // Convertir en rey a un personaje de un reino
-reinoPoniente.setRey = jaime;
+reinoPoniente.proclamarRey(jaime);
 
 // Información del reino
 reinoPoniente.listarCasas();

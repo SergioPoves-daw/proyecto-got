@@ -29,10 +29,18 @@ export class Reino {
 
     set setCasa(casa) {
         this.casas.push(casa); // Añadir casa al reino (array)
-        console.log(`La Casa ${casa.nombre} ha sido añadida al Reino de ${this.nombre}`);
     }
 
     set setRey(rey) {
+        this.rey = rey;
+    }
+
+    anadirCasa(casa) {
+        this.casas.push(casa); // Añadir casa al reino (array)
+        console.log(`La Casa ${casa.nombre} ha sido añadida al Reino de ${this.nombre}`);
+    }
+
+    proclamarRey(rey) {
         this.rey = rey;
         console.log(`${rey.nombre} ha sido proclamado rey de ${this.nombre}`);
     }

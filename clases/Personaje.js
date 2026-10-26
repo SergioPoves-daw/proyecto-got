@@ -61,10 +61,18 @@ export class Personaje {
 
     set setCasa(casa) {
         this.casa = casa;
-        console.log(`${this.nombre} ha sido añadido a la Casa ${casa.nombre}`);
     }
 
     set setArma(arma) {
+        this.arma = arma;
+    }
+
+    asignarCasa(casa) {
+        this.casa = casa;
+        console.log(`${this.nombre} ha sido añadido a la Casa ${casa.nombre}`);
+    }
+
+    asignarArma(arma) {
         this.arma = arma;
         console.log(`${this.nombre} ha equipado el arma ${arma.nombre}`);
     }
