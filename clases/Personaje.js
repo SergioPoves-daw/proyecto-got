@@ -3,22 +3,12 @@ export class Personaje {
     edad;
     vivo;
     casa;
-    arma;
 
-    constructor(nombre, edad, casa, arma) {
+    constructor(nombre, edad, casa) {
         this.nombre = nombre;
         this.edad = edad;
         this.vivo = true;
-
-        if (casa) {
-            this.casa = casa; // Si se introduce una casa en el constructor, asignarla al personaje
-            console.log(`${this.nombre} ha sido añadido a la Casa ${casa.nombre}`);
-        }
-
-        if (arma) {
-            this.arma = arma; // Si se introduce un arma en el constructor, asignarla al personaje
-            console.log(`${this.nombre} ha equipado el arma ${arma.nombre}`);
-        }
+        this.casa = casa;
     }
 
     // Getter
@@ -42,10 +32,6 @@ export class Personaje {
         return this.casa.nombre;
     }
 
-    get getArma() {
-        return this.arma;
-    }
-
     // Setter
     set setNombre(nombre) {
         this.nombre = nombre;
@@ -63,18 +49,9 @@ export class Personaje {
         this.casa = casa;
     }
 
-    set setArma(arma) {
-        this.arma = arma;
-    }
-
     asignarCasa(casa) {
         this.casa = casa;
         console.log(`${this.nombre} ha sido añadido a la Casa ${casa.nombre}`);
-    }
-
-    asignarArma(arma) {
-        this.arma = arma;
-        console.log(`${this.nombre} ha equipado el arma ${arma.nombre}`);
     }
 
     presentacion() {
