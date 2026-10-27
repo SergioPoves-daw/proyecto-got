@@ -1,11 +1,12 @@
 import { Personaje } from "./../Personaje.js";
+import { Arma } from "./../Arma.js";
 
 export class Guerrero extends Personaje {
     arma;
 
     constructor(nombre, edad, casa, arma) {
         super(nombre, edad, casa);
-        this.arma = arma;
+        if (arma instanceof Arma) this.arma = arma;
     }
 
     getArma() {
@@ -13,16 +14,21 @@ export class Guerrero extends Personaje {
     }
 
     setArma(arma) {
-        this.arma = arma;
+        if (arma instanceof Arma) this.arma = arma;
     }
 
     asignarArma(arma) {
-        this.arma = arma;
-        console.log(`${this.nombre} ha equipado el arma ${arma.nombre}.`);
+        if (arma instanceof Arma) {
+            this.arma = arma;
+            console.log(`${this.nombre} ha equipado el arma ${arma.nombre}.`);
+        }
+        else {
+            console.log("Arma no válida");
+        }
     }
 
     luchar() {
-        console.log(`${this.nombre} ataca con su ${this.arma.nombre}, causando ${this.arma.danio} puntos.`);
+        if (this.arma) console.log(`${this.nombre} ataca con su ${this.arma.nombre}, causando ${this.arma.danio} puntos.`);
     }
 
     entrenar() {

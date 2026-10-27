@@ -4,9 +4,9 @@ export class Arma {
     danio;
     
     constructor(nombre, tipo, danio) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.danio = danio;
+        if (typeof(nombre) == "string") this.nombre = nombre;
+        if (typeof(tipo) == "string") this.tipo = tipo;
+        if (typeof(danio) == "number") this.danio = danio;
     }
 
     // Getter
@@ -24,15 +24,15 @@ export class Arma {
 
     // Setter
     set setNombre(nombre) {
-        this.nombre = nombre;
+        if (typeof(nombre) == "string") this.nombre = nombre;
     }
 
     set setDanio(danio) {
-        this.danio = danio;
+        if (typeof(danio) == "number") this.danio = danio;
     }
 
     set setTipo(tipo) {
-        this.tipo = tipo;
+        if (typeof(tipo) == "string") this.tipo = tipo;
     }
 
     descripcion() {

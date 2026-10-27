@@ -5,15 +5,15 @@ export class Consejero extends Personaje {
 
     constructor(nombre, edad, casa, especialidad) {
         super(nombre, edad, casa);
-        this.especialidad = especialidad;
-    }
-
-    set setEspecialidad(especialidad) {
-        this.especialidad = especialidad;
+        if (typeof(especialidad) == "string") this.especialidad = especialidad;
     }
     
     get getEspecialidad() {
         return this.especialidad;
+    }
+
+    set setEspecialidad(especialidad) {
+        if (typeof(especialidad) == "string") this.especialidad = especialidad;
     }
 
     luchar() {
@@ -21,6 +21,7 @@ export class Consejero extends Personaje {
     }
 
     aconsejar(personaje) {
-        console.log(`${this.nombre} aconseja a ${personaje.nombre} sobre ${this.especialidad}`);
+        if (this.especialidad) console.log(`${this.nombre} aconseja a ${personaje.nombre} sobre ${this.especialidad}`);
+        else console.log(`El consejero ${this.nombre} no tiene especialidad`);
     }
 }

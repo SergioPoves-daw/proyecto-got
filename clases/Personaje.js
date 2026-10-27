@@ -1,3 +1,5 @@
+import { Casa } from "./Casa.js";
+
 export class Personaje {
     nombre;
     edad;
@@ -5,10 +7,13 @@ export class Personaje {
     casa;
 
     constructor(nombre, edad, casa) {
-        this.nombre = nombre;
-        this.edad = edad;
+        if (typeof(nombre) == "string") this.nombre = nombre;
+        if (typeof(edad) == "number") this.edad = edad;
         this.vivo = true;
-        this.casa = casa;
+        if (casa && casa instanceof Casa) {
+            this.casa = casa;
+            casa.anadirMiembro(this);
+        }
     }
 
     // Getter
@@ -34,27 +39,34 @@ export class Personaje {
 
     // Setter
     set setNombre(nombre) {
-        this.nombre = nombre;
+        if (typeof(nombre) == "string") this.nombre = nombre;
     }
 
     set setEdad(edad) {
-        this.edad = edad;
+        if (typeof(edad) == "number") this.edad = edad;
     }
 
     set setVivo(vivo) {
-        this.vivo = vivo;
+        if (typeof(vivo) == "boolean") this.vivo = vivo;
     }
 
     set setCasa(casa) {
-        this.casa = casa;
+        if (casa instanceof Casa) this.casa = casa;
     }
 
     asignarCasa(casa) {
-        this.casa = casa;
-        console.log(`${this.nombre} ha sido añadido a la Casa ${casa.nombre}`);
+        if (casa instanceof Casa) {
+            this.casa = casa;
+            console.log(`${this.nombre} ha sido añadido a la Casa ${casa.nombre}`);
+        }
+        else {
+            console.log("Casa no válida");
+        }
     }
 
     presentacion() {
-        console.log(`Soy ${this.nombre} de la Casa ${this.casa.nombre}`);
+        if (this.casa) {
+            console.log(`Soy ${this.nombre} de la Casa ${this.casa.nombre}`);
+        }
     }
 }

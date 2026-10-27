@@ -5,7 +5,7 @@ export class Rey extends Personaje {
 
     constructor(nombre, edad, casa, aniosReinado) {
         super(nombre, edad, casa);
-        this.aniosReinado = aniosReinado;
+        if (typeof(aniosReinado) == "number") this.aniosReinado = aniosReinado;
     }
 
     get getAniosReinado() {
@@ -13,11 +13,12 @@ export class Rey extends Personaje {
     }
 
     set setAniosReinado(anios) {
-        this.aniosReinado = anios;
+        if (typeof(anios) == "number") this.aniosReinado = anios;
     }
 
     gobernar() {
-        console.log(`${this.nombre} gobierna con sabiduría desde hace ${this.aniosReinado} años.`);
+        if (this.aniosReinado) console.log(`${this.nombre} gobierna con sabiduría desde hace ${this.aniosReinado} años.`);
+        else console.log(`No se sabe cuántos años lleva ${this.nombre} reinando`);
     }
 
     luchar() {
