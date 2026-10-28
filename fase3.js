@@ -28,23 +28,8 @@ const cersei = new Guerrero("Cersei Lannister", 34, casaLannister, lanzaDeCaza);
 const tyrion = new Guerrero("Tyrion Lannister", 30, casaLannister, ballesta);
 const gregor = new Guerrero("Gregor Clegane", 38, casaLannister, hacha);
 
-// === AÑADIR PERSONAJES A LAS CASAS ===
-casaStark.anadirMiembro(jon);
-casaStark.anadirMiembro(arya);
-casaStark.anadirMiembro(robb);
-casaStark.anadirMiembro(brienne);
-
-casaLannister.anadirMiembro(jaime);
-casaLannister.anadirMiembro(cersei);
-casaLannister.anadirMiembro(tyrion);
-casaLannister.anadirMiembro(gregor);
-
 casaStark.listaMiembros();
 casaLannister.listaMiembros();
 
-
 const batallaBastardos = new Batalla();
 batallaBastardos.iniciarBatalla(casaStark, casaLannister);
-
-batallaBastardos.mostrarGuerrerosMuertosEnCombate();
-batallaBastardos.mostrarSupervivientes();
