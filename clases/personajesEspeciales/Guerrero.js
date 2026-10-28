@@ -3,6 +3,7 @@ import { Arma } from "./../Arma.js";
 
 export class Guerrero extends Personaje {
     arma;
+    #vida = 100;
 
     constructor(nombre, edad, casa, arma) {
         super(nombre, edad, casa);
@@ -13,8 +14,16 @@ export class Guerrero extends Personaje {
         return this.arma;
     }
 
+    getVida() {
+        return this.#vida;
+    }
+
     setArma(arma) {
         if (arma instanceof Arma) this.arma = arma;
+    }
+
+    setVida(puntos) {
+        if (typeof(puntos) == "number") this.#vida = puntos;
     }
 
     asignarArma(arma) {
@@ -33,5 +42,30 @@ export class Guerrero extends Personaje {
 
     entrenar() {
         console.log(`${this.nombre} se entrena sin descanso para la próxima batalla.`);
+    }
+
+    atacar(objetivo) {
+        if (objetivo instanceof Guerrero) {
+            let danio = Math.floor(this.arma.danio * (0.7 + Math.random() * 0.6));
+            console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${danio} puntos de daño`);
+            objetivo.recibirDanio(danio);
+        }
+        else {
+            console.log(`${objetivo.nombre} no es un Guerrero.`);
+        }
+    }
+
+    recibirDanio(puntos) {
+        this.#vida -= puntos;
+
+        if (this.#vida <= 0) {
+            this.#vida = 0;
+            this.vivo = false;
+            this.morir();
+        }
+    }
+
+    morir() {
+        console.log(`${this.nombre} ha muerto.`);
     }
 }

@@ -3,9 +3,8 @@ export class Arma {
     tipo;
     danio;
     
-    constructor(nombre, tipo, danio) {
+    constructor(nombre, danio) {
         if (typeof(nombre) == "string") this.nombre = nombre;
-        if (typeof(tipo) == "string") this.tipo = tipo;
         if (typeof(danio) == "number") this.danio = danio;
     }
 
