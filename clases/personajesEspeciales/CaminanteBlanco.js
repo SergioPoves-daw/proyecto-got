@@ -11,15 +11,31 @@ export class CaminanteBlanco extends Personaje {
         this.#poderHelado = poderHelado;
     }
 
+    get getVida() {
+        return this.#vida;
+    }
+
+    get getPoderHelado() {
+        return this.#poderHelado;
+    }
+
+    set setVida(puntos) {
+        this.#vida = puntos;
+    }
+
+    set setPoderHelado(poder) {
+        this.#poderHelado = poder;
+    }
+
     atacar(objetivo) {
         let danio = Math.floor(this.#poderHelado * (0.7 + Math.random() * 0.6));
         console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${danio} puntos de daño`);
         objetivo.recibirDanio(danio);
     }
 
-    recibirDanio(puntos, arma) {
-        if (arma instanceof Arma && arma.tipo.toLowerCase() == "acero valyrio") {
-            this.#vida =- puntos;
+    recibirDanio(puntos, tipoAtaque) {
+        if ((typeof tipoAtaque == "string" && tipoAtaque.toLowerCase() == "fuego") || (typeof tipoAtaque == "string" && tipoAtaque.toLowerCase() == "acero valyrio")) {
+            this.#vida -= puntos;
         }
 
         if (this.#vida <= 0) {

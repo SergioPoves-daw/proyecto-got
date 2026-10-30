@@ -1,9 +1,10 @@
 import { Personaje } from "./../Personaje.js";
 import { Arma } from "./../Arma.js";
+import { CaminanteBlanco } from "./CaminanteBlanco.js";
 
 export class Guerrero extends Personaje {
     arma;
-    #vida = 100;
+    vida = 100;
 
     constructor(nombre, edad, casa, arma) {
         super(nombre, edad, casa);
@@ -15,7 +16,7 @@ export class Guerrero extends Personaje {
     }
 
     getVida() {
-        return this.#vida;
+        return this.vida;
     }
 
     setArma(arma) {
@@ -23,7 +24,7 @@ export class Guerrero extends Personaje {
     }
 
     setVida(puntos) {
-        if (typeof(puntos) == "number") this.#vida = puntos;
+        if (typeof puntos == "number") this.vida = puntos;
     }
 
     asignarArma(arma) {
@@ -45,10 +46,16 @@ export class Guerrero extends Personaje {
     }
 
     atacar(objetivo) {
-        if (objetivo instanceof Guerrero) {
+        if (objetivo instanceof Guerrero || objetivo instanceof CaminanteBlanco) {
+            if ((objetivo instanceof CaminanteBlanco) && !(this.arma.getTipo == "acero valyrio")) {
+                console.log(`${objetivo.nombre} es inmune al ataque de ${this.nombre}.`);
+                return;
+            };
             let danio = Math.floor(this.arma.danio * (0.7 + Math.random() * 0.6));
             console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${danio} puntos de daño`);
-            objetivo.recibirDanio(danio);
+
+            if (objetivo instanceof CaminanteBlanco) objetivo.recibirDanio(danio, this.arma.getTipo.toLowerCase());
+            else objetivo.recibirDanio(danio);
         }
         else {
             console.log(`${objetivo.nombre} no es un Guerrero.`);
@@ -56,10 +63,10 @@ export class Guerrero extends Personaje {
     }
 
     recibirDanio(puntos) {
-        this.#vida -= puntos;
+        this.vida -= puntos;
 
-        if (this.#vida <= 0) {
-            this.#vida = 0;
+        if (this.vida <= 0) {
+            this.vida = 0;
             this.vivo = false;
             this.morir();
         }

@@ -4,7 +4,7 @@ import { Guerrero } from "./clases/personajesEspeciales/Guerrero.js";
 import { Consejero } from "./clases/personajesEspeciales/Consejero.js";
 import { Dragon } from "./clases/personajesEspeciales/Dragon.js";
 import { Khaleesi } from "./clases/personajesEspeciales/Khaleesi.js";
-import { CaminanteBlanco } from "./clases/personajesEspeciales/CaminanteBlancos.js";
+import { CaminanteBlanco } from "./clases/personajesEspeciales/CaminanteBlanco.js";
 import { Batalla } from "./clases/Batalla.js";
 
 // --------------------------------------------------
@@ -17,12 +17,9 @@ const hacha = new Arma("Hacha del Norte", 40, "hierro");
 // --------------------------------------------------
 // 2. Crear guerreros de la Casa Stark
 // --------------------------------------------------
-const jon = new Guerrero("Jon Snow", 25, true, casaStark, garra);
-const tormund = new Guerrero("Tormund", 30, true, casaStark, hacha);
-const edd = new Guerrero("Edd", 28, true, casaStark, hacha);
-casaStark.anadirMiembro(jon);
-casaStark.anadirMiembro(tormund);
-casaStark.anadirMiembro(edd);
+const jon = new Guerrero("Jon Snow", 25, casaStark, garra);
+const tormund = new Guerrero("Tormund", 30, casaStark, hacha);
+const edd = new Guerrero("Edd", 28, casaStark, hacha);
 
 // --------------------------------------------------
 // 3. Crear a Khaleesi y sus dragones
@@ -31,7 +28,7 @@ const Tyrion = new Consejero();
 const drogon = new Dragon("Drogon", 60, "fuego");
 const viserion = new Dragon("Viserion", 55, "fuego");
 const rhaegal = new Dragon("Rhaegal", 50, "fuego");
-const khaleesi = new Khaleesi("Daenerys Targaryen", 29, true, "Casa Targaryen",[drogon, viserion, rhaegal],Tyrion);
+const khaleesi = new Khaleesi("Daenerys Targaryen", 29, "Casa Targaryen",[drogon, viserion, rhaegal],Tyrion);
 
 // --------------------------------------------------
 // 4. Crear ejército de Caminantes Blancos
