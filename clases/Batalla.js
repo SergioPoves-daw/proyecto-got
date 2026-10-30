@@ -81,6 +81,10 @@ export class Batalla {
         }
     }
 
+    batallaFinal(casa, dragones, caminantes) {
+
+    }
+
     mostrarGuerrerosMuertosEnCombate() {
         console.log("Guerreros muertos en combate:");
         console.log(this.#muertos);
