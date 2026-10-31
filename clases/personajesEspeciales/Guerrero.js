@@ -4,26 +4,26 @@ import { CaminanteBlanco } from "./CaminanteBlanco.js";
 
 export class Guerrero extends Personaje {
     arma;
-    vida = 100;
+    #vida = 100;
 
     constructor(nombre, edad, casa, arma) {
         super(nombre, edad, casa);
         if (arma instanceof Arma) this.arma = arma;
     }
 
-    getArma() {
+    get getArma() {
         return this.arma;
     }
 
-    getVida() {
-        return this.vida;
+    get getVida() {
+        return this.#vida;
     }
 
-    setArma(arma) {
+    set setArma(arma) {
         if (arma instanceof Arma) this.arma = arma;
     }
 
-    setVida(puntos) {
+    set setVida(puntos) {
         if (typeof puntos == "number") this.vida = puntos;
     }
 
@@ -63,10 +63,10 @@ export class Guerrero extends Personaje {
     }
 
     recibirDanio(puntos) {
-        this.vida -= puntos;
+        this.#vida -= puntos;
 
-        if (this.vida <= 0) {
-            this.vida = 0;
+        if (this.#vida <= 0) {
+            this.#vida = 0;
             this.vivo = false;
             this.morir();
         }

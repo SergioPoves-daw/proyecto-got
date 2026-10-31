@@ -14,14 +14,8 @@ export class Khaleesi extends Personaje {
     }
 
     #validarDragones(dragones) {
-        let c = 0;
-
-        dragones.forEach(d => {
-            if (d instanceof Dragon) c++;
-        });
-
-        if (c === 3) return true;
-        else return false;
+        if (dragones.every(d => d instanceof Dragon)) return true;
+        return false;
     }
 
     get getDragones() {

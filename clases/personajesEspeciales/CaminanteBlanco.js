@@ -29,7 +29,7 @@ export class CaminanteBlanco extends Personaje {
 
     atacar(objetivo) {
         let danio = Math.floor(this.#poderHelado * (0.7 + Math.random() * 0.6));
-        console.log(`${this.nombre} ataca a ${objetivo.nombre} causando ${danio} puntos de daño`);
+        console.log(`${this.nombre} ataca a ${objetivo.getNombre} causando ${danio} puntos de daño`);
         objetivo.recibirDanio(danio);
     }
 

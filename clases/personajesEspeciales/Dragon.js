@@ -13,7 +13,7 @@ export class Dragon extends Personaje {
         if (tipoAtaque.toLowerCase() == "fuego" || tipoAtaque.toLowerCase() == "hielo") this.#tipoAtaque = tipoAtaque.toLowerCase();
         this.vivo = true;
     }
-
+    
     get getVida() {
         return this.#vida;
     }
