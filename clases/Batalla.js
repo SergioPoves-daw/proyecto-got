@@ -86,20 +86,25 @@ export class Batalla {
     }
 
     batallaFinal(casa, khaleesi, caminantes) {
+        // Si no hay caminantes en el ejército de caminantes
         if (caminantes.length <= 0  || !caminantes.every(c => c instanceof CaminanteBlanco)) {
             console.log("No hay caminantes blancos que vayan a luchar");
             return;
         }
 
+        // Si no está Khaleesi
         if (!(khaleesi instanceof Khaleesi)) {
             console.log("El ejército necesita a Khaleesi");
             return;
         }
 
+        // Si la casa tiene miembros
         if (casa instanceof Casa && casa.getMiembros.length > 0) {
-            // Añadir a los arrays solamente los guerreros
+
+            // Añadir al array solamente los guerreros
             let guerreros = casa.getMiembros.filter(m => m instanceof Guerrero && m.getVivo);
 
+            // Si la casa no tiene guerreros
             if (guerreros.length <= 0) {
                 console.log(`La Casa ${casa.nombre} no tiene guerreros`);
                 return;
@@ -134,6 +139,7 @@ export class Batalla {
 
                 // Mientras uno de los 2 sigan vivos, seguirán enfrentándose
                 while (!muerto && caminantes.length > 0) {
+
                     // Si el atacante es un guerrero, siempre ataca
                     if (noCaminante instanceof Guerrero) {
                         noCaminante.atacar(caminantes[0]);
@@ -169,16 +175,17 @@ export class Batalla {
                             console.log(`${noCaminante.getNombre}: ${noCaminante.getVida} | ${dragon.getNombre}: ${dragon.getVida} | ${caminantes[0].nombre}: ${caminantes[0].getVida}`);
                         }
 
+                        // Pasa al siguiente caminante
                         this.#muertos.push(`${caminantes[0].getNombre} (Caminante)`);
-                        caminantes.shift(); // Pasa al siguiente caminante
+                        caminantes.shift();
                         muerto = true;
                     }
 
-                    // Si el caminante sigue vivo, ataca al guerrero y al dragon (si aún hay guerreros, si no, al dragón directamente)
+                    // Si el caminante sigue vivo, ataca al guerrero y al dragón de apoyo (si aún hay guerreros, si no, al dragón directamente)
                     else { 
                         caminantes[0].atacar(noCaminante);
 
-                        // Si hay algún dragón vivo, ataca a este también
+                        // Si hay algún dragón de apoyo vivo, ataca a este también
                         if (noCaminante instanceof Guerrero && (khaleesi.getDragones.length > 0 && dragon.getVivo)) caminantes[0].atacar(dragon);
                     }
 
@@ -190,23 +197,25 @@ export class Batalla {
                         if (noCaminante instanceof Dragon) {
                             console.log(`${noCaminante.getNombre}: ${noCaminante.getVida} | ${caminantes[0].nombre}: ${caminantes[0].getVida}`);
                         }
+                        // Si es un guerrero, muestra al dragón de apoyo
                         else {
                             console.log(`${noCaminante.getNombre}: ${noCaminante.getVida} | ${dragon.getNombre}: ${dragon.getVida} | ${caminantes[0].nombre}: ${caminantes[0].getVida}`);
                         }
 
+                        // Añadir caminante nuevo al ejército
                         let caminante;
 
                         // En caso de ser guerrero
                         if (noCaminante instanceof Guerrero) {
                             caminante = new CaminanteBlanco(noCaminante.getNombre, noCaminante.getArma.getDanio);
-                            guerreros.shift();
+                            guerreros.shift(); // Elimina al guerrero
                         }
 
                         // En caso de ser dragón
                         else if (noCaminante instanceof Dragon) {
                             caminante = new CaminanteBlanco(noCaminante.getNombre, noCaminante.getPoder);
-                            caminante.setVida = 200;
-                            khaleesi.getDragones.shift();
+                            caminante.setVida = 200; // Se le asigna la vida de los dragones
+                            khaleesi.getDragones.shift(); // Elimina al dragón
                         }
 
                         // Añade el nuevo caminante al ejército de Caminantes Blancos a atacar el último
@@ -230,14 +239,17 @@ export class Batalla {
                         caminantes.unshift(caminante);
                         this.#muertos.push(`${dragon.getNombre} (Muerto)`);
 
-                        khaleesi.getDragones.shift();
+                        khaleesi.getDragones.shift(); // Elimina al dragón
                         muerto = true;
                     }
-                    // Si sigue vivo, vuelve a atacar
+
+                    // Si alguno sigue vivo, vuelve a atacar
                 }
+                // Separación para el siguiente enfrentamiento
                 console.log("--------------------");
             }
 
+            // Guardar supervivientes
             let superviviente;
 
             // Si gana la casa con guerreros vivos
@@ -276,6 +288,7 @@ export class Batalla {
             this.mostrarSupervivientes();
         }
 
+        // Si la casa no tiene miembros
         else {
             console.log(`La Casa ${casa.nombre} no tiene miembros.`);
         }
